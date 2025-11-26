@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your Exclusive Rewards Now!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import and general styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Chivo+Mono:wght@700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Darker, modern background */
+            color: #ffffff;
+        }
+        /* Keyframe for the dynamic fade-in animation */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .offer-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+            opacity: 0; /* Start invisible for animation */
+        }
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+        }
+        .cta-button {
+            transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+        }
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+        .timer-text {
+            font-family: 'Chivo Mono', monospace; /* Monospace font for the timer */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0d1117 0%, #1a365d 50%, #0d1117 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+
+    <!-- Header & Headline Section -->
+    <header class="text-center mb-10">
+        <!-- UPDATED: Heading Image with actual gift card related image -->
+        <div class="max-w-7xl mx-auto mb-8 rounded-xl overflow-hidden shadow-2xl border-2 border-teal-500/50">
+            <div class="header-gradient relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-purple-600/20 z-10"></div>
+                <div class="relative z-20 py-16 px-8">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tighter">
+                        Exclusive Gift Card Rewards
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-teal-300 max-w-3xl mx-auto">
+                        Claim Your Premium Gift Cards - Limited Time Offer!
+                    </p>
+                    <div class="mt-8 flex justify-center space-x-4">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                            <span class="text-2xl">🎮</span>
+                            <p class="text-sm mt-1">Xbox</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                            <span class="text-2xl">🍔</span>
+                            <p class="text-sm mt-1">Wendy's</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                            <span class="text-2xl">📺</span>
+                            <p class="text-sm mt-1">Hulu</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                            <span class="text-2xl">📦</span>
+                            <p class="text-sm mt-1">Mystery Box</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                            <span class="text-2xl">🥤</span>
+                            <p class="text-sm mt-1">7-Eleven</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-teal-400 mb-3 tracking-tighter">
+            🚀 <span class="block sm:inline">Flash Offer! Claim Your Exclusive Rewards</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+            Time and stock are extremely limited! Complete a quick, simple action below to secure your reward now.
+        </p>
+        
+        <!-- DYNAMIC ELEMENT: COUNTDOWN TIMER -->
+        <div id="countdown-wrapper" class="mt-8 mb-8 bg-gray-900 inline-flex items-center p-4 rounded-xl shadow-2xl border-2 border-teal-500/50">
+            <svg class="w-8 h-8 text-red-400 mr-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div id="countdown" class="text-2xl sm:text-3xl font-bold text-red-400 timer-text">
+                00:00
+            </div>
+        </div>
+    </header>
+
+    <!-- Offers Grid Section -->
+    <main class="max-w-7xl mx-auto">
+        <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Offer Cards will be inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Social Proof Section -->
+    <section class="max-w-7xl mx-auto mt-16">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">What People Are Saying</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-6 rounded-xl border border-teal-500/30">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white font-bold mr-3">JD</div>
+                    <div>
+                        <p class="font-bold">John D.</p>
+                        <div class="flex text-yellow-400">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-300">"Got my $100 Xbox card in less than 24 hours! So easy to claim."</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-teal-500/30">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold mr-3">SM</div>
+                    <div>
+                        <p class="font-bold">Sarah M.</p>
+                        <div class="flex text-yellow-400">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-300">"The mystery box was amazing! Got samples from brands I love."</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl border border-teal-500/30">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold mr-3">TR</div>
+                    <div>
+                        <p class="font-bold">Tom R.</p>
+                        <div class="flex text-yellow-400">
+                            ★★★★★
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-300">"Free Hulu for months! Completed a simple survey and got my code."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="max-w-7xl mx-auto mt-16">
+        <h2 class="text-3xl font-bold text-center mb-10 text-white">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-teal-600 flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">1</div>
+                <h3 class="text-xl font-bold mb-2 text-teal-400">Select Your Reward</h3>
+                <p class="text-gray-400">Choose from our premium gift card offers</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-teal-600 flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">2</div>
+                <h3 class="text-xl font-bold mb-2 text-teal-400">Complete Simple Action</h3>
+                <p class="text-gray-400">Fill out a quick survey or sign up for a trial</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-teal-600 flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">3</div>
+                <h3 class="text-xl font-bold mb-2 text-teal-400">Receive Your Gift Card</h3>
+                <p class="text-gray-400">Get your digital gift card delivered via email</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATED: Footer Section -->
+    <footer class="mt-20 bg-gray-900 border-t border-teal-500/50 p-8 sm:p-12 rounded-t-xl">
+        <div class="max-w-7xl mx-auto">
+            <!-- Footer Navigation Links -->
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-6">
+                <a href="#" class="text-gray-400 hover:text-teal-400 transition duration-150">Terms & Conditions</a>
+                <a href="#" class="text-gray-400 hover:text-teal-400 transition duration-150">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-teal-400 transition duration-150">FAQ</a>
+                <a href="#" class="text-gray-400 hover:text-teal-400 transition duration-150">Contact Us</a>
+            </div>
+
+            <!-- Social Media Icons (Mock) -->
+            <div class="flex justify-center space-x-6 mb-8">
+                <!-- Facebook -->
+                <a href="#" class="text-gray-500 hover:text-teal-400 transition duration-150">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h3V5h-3c-3.1 0-5 1.5-5 5v3.5H7v4h4V22h6v-4h4.5l-.5-4h-4V13.5z"/></svg>
+                </a>
+                <!-- Twitter -->
+                <a href="#" class="text-gray-500 hover:text-teal-400 transition duration-150">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.65 6.42a8.55 8.55 0 01-2.48.68 4.31 4.31 0 003.88-1.44 8.57 8.57 0 01-2.73 1.05 4.29 4.29 0 00-7.3 3.91 12.15 12.15 0 01-8.83-4.48 4.29 4.29 0 001.33 5.73 4.26 4.26 0 01-1.94-.53v.05a4.29 4.29 0 003.44 4.2 4.28 4.28 0 01-1.94.07 4.3 4.3 0 004 2.98 8.6 8.6 0 01-5.33 1.84 12.16 12.16 0 006.59 1.93c7.9 0 12.23-6.55 12.23-12.23 0-.19 0-.38-.01-.57a8.77 8.77 0 002.15-2.23z"/></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="#" class="text-gray-500 hover:text-teal-400 transition duration-150">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.2 0 3.586.012 4.85.071l.73.036c1.1.054 1.543.197 2.05.39a3.794 3.794 0 012.35 2.35c.193.507.336.95.39 2.05l.036.73c.059 1.264.071 1.65.071 4.85s-.012 3.586-.071 4.85l-.036.73c-.054 1.1-.197 1.543-.39 2.05a3.794 3.794 0 01-2.35 2.35c-.507.193-.95.336-2.05.39l-.73.036c-1.264.059-1.65.071-4.85.071s-3.586-.012-4.85-.071l-.73-.036c-1.1-.054-1.543-.197-2.05-.39a3.794 3.794 0 01-2.35-2.35c-.193-.507-.336-.95-.39-2.05l-.036-.73c-.059-1.264-.071-1.65-.071-4.85s.012-3.586.071-4.85l.036-.73c.054-1.1.197-1.543.39-2.05a3.794 3.794 0 012.35-2.35c.507-.193.95-.336 2.05-.39l.73-.036c1.264-.059 1.65-.071 4.85-.071zm0 1.95c-3.13 0-3.486.012-4.73.07l-.7.034c-1.07.052-1.42.18-1.78.32a2.35 2.35 0 00-1.44 1.44c-.14.36-.268.71-.32 1.78l-.034.7c-.058 1.244-.07 1.6-.07 4.73s.012 3.486.07 4.73l.034.7c.052 1.07.18 1.42.32 1.78a2.35 2.35 0 001.44 1.44c.36.14.71.268 1.78.32l.7.034c1.244.058 1.6.07 4.73.07s3.486-.012 4.73-.07l.7-.034c1.07-.052 1.42-.18 1.78-.32a2.35 2.35 0 001.44-1.44c.14-.36.268-.71.32-1.78l.034-.7c.058-1.244.07-1.6.07-4.73s-.012-3.486-.07-4.73l-.034-.7c-.052-1.07-.18-1.42-.32-1.78a2.35 2.35 0 00-1.44-1.44c-.36-.14-.71-.268-1.78-.32l-.7-.034c-1.244-.058-1.6-.07-4.73-.07zm0 1.4a5.55 5.55 0 110 11.1 5.55 5.55 0 010-11.1zm0 1.95a3.6 3.6 0 100 7.2 3.6 3.6 0 000-7.2zm7.1-2.95a1.31 1.31 0 11-2.62 0 1.31 1.31 0 012.62 0z"/></svg>
+                </a>
+            </div>
+
+            <!-- Copyright and Disclaimer Summary -->
+            <p class="text-center text-gray-500 text-sm mt-4">
+                © 2024 RewardZone. All Rights Reserved. | Affiliate Disclosure: This is an advertisement.
+            </p>
+            <p class="text-center text-gray-600 text-xs mt-3 max-w-4xl mx-auto">
+                *The offers presented are sponsored promotions and require the completion of specific advertiser actions. Brands shown are for illustrative purposes and are not affiliated with or endorsing this promotion.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Simple Custom Modal/Message Box (Replaces alert()) -->
+    <div id="message-box" class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 z-50">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl max-w-sm w-full text-center border-t-4 border-teal-500">
+            <h3 class="text-xl font-bold mb-3 text-teal-400">Offer Claimed!</h3>
+            <p id="message-text" class="text-gray-200 mb-6">You are now being redirected to the offer page.</p>
+            <button id="continue-button" class="w-full py-3 bg-teal-600 hover:bg-teal-500 text-white font-semibold rounded-lg cta-button">
+                Continue to Offer
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- DYNAMIC DATA SETUP ---
+        const offers = [
+            { 
+                name: "get a $100 Xbox Gift Card", 
+                icon: "🎮", 
+                color: "bg-green-600", 
+                stock: 15,
+                link: "https://singingfiles.com/show.php?l=0&u=2462920&id=72074&tracking_id=srk"
+            },
+            { 
+                name: "Mystery Samples Box", 
+                icon: "📦", 
+                color: "bg-yellow-600", 
+                stock: 18,
+                link: "https://singingfiles.com/show.php?l=0&u=2462920&id=70458&tracking_id=srk"
+            },
+            { 
+                name: "$100 Wendy's Gift Card", 
+                icon: "🍔", 
+                color: "bg-red-600", 
+                stock: 21,
+                link: "https://singingfiles.com/show.php?l=0&u=2462920&id=71614&tracking_id=srk"
+            },
+            { 
+                name: "get a $100 Hulu Gift Card!", 
+                icon: "📺", 
+                color: "bg-teal-600", 
+                stock: 8,
+                link: "https://singingfiles.com/show.php?l=0&u=2462920&id=71508&tracking_id=srk"
+            },
+            { 
+                name: "get a 7-Eleven Gift Card!", 
+                icon: "🥤", 
+                color: "bg-orange-600", 
+                stock: 22,
+                link: "https://singingfiles.com/show.php?l=0&u=2462920&id=69083&tracking_id=srk"
+            },
+        ];
+
+        const offersGrid = document.getElementById('offers-grid');
+        const messageBox = document.getElementById('message-box');
+        const messageText = document.getElementById('message-text');
+        const continueButton = document.getElementById('continue-button');
+
+        // Store the current offer link for redirection
+        let currentOfferLink = '';
+
+        // --- COUNTDOWN TIMER LOGIC ---
+        let totalSeconds = 30 * 60; // 30 minutes countdown
+        const countdownElement = document.getElementById('countdown');
+
+        function startCountdown() {
+            const timer = setInterval(() => {
+                totalSeconds--;
+
+                if (totalSeconds < 0) {
+                    clearInterval(timer);
+                    countdownElement.innerHTML = '<span class="text-red-600">TIME EXPIRED!</span>';
+                    // You might want to disable buttons here if the timer runs out
+                    return;
+                }
+
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+
+                countdownElement.innerHTML = `
+                    <span class="text-gray-400 font-normal mr-2">Offer ends in:</span>
+                    <span class="text-3xl font-bold text-red-400">
+                        ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
+                    </span>
+                `;
+            }, 1000);
+        }
+        
+        // --- CTA AND MODAL LOGIC ---
+        function handleClaim(offerName, offerLink) {
+            // Store the link for redirection
+            currentOfferLink = offerLink;
+            
+            // Show the modal
+            messageText.textContent = `You've selected "${offerName}". Click continue to complete the required action and receive your reward!`;
+            messageBox.classList.remove('hidden');
+            messageBox.classList.add('flex');
+            console.log(`CPA action initiated for: ${offerName}`);
+        }
+
+        function closeMessage() {
+            messageBox.classList.add('hidden');
+            messageBox.classList.remove('flex');
+        }
+
+        function redirectToOffer() {
+            if (currentOfferLink) {
+                window.location.href = currentOfferLink;
+            }
+        }
+
+        // --- DYNAMIC CARD GENERATION & ANIMATION ---
+        function renderOffers() {
+            offers.forEach((offer, index) => {
+                // Since user requested no 'SOLD OUT', we ensure all stock is > 0 in data.
+                const isLowStock = offer.stock < 10;
+                const card = document.createElement('div');
+                
+                // Add staggered animation delay
+                card.style.animationDelay = `${index * 0.1}s`; 
+
+                // Determine stock status styling
+                const stockHtml = isLowStock
+                    ? `<span class="text-orange-400 font-extrabold bg-orange-900/30 px-3 py-1 rounded-full">Only ${offer.stock} left!</span>`
+                    : `<span class="text-green-400 font-extrabold">${offer.stock} available!</span>`;
+                
+                const stockRingColor = isLowStock ? 'border-orange-600/50' : 'border-green-600/50';
+
+                // Button is always enabled since stock > 0
+                const buttonClass = `bg-teal-600 hover:bg-teal-500 shadow-lg shadow-teal-900/50`;
+                const buttonText = 'Claim Now & Secure Reward';
+                const buttonOnClick = `handleClaim('${offer.name}', '${offer.link}')`;
+                const isDisabled = '';
+
+                card.className = `offer-card bg-gray-800 p-6 rounded-2xl shadow-xl border-b-4 ${offer.color.replace('bg-', 'border-')} flex flex-col items-center text-center`;
+
+                // Split the offer name for better display emphasis
+                const parts = offer.name.split('$');
+                const mainText = parts[0].trim();
+                const valueText = parts.length > 1 ? `$${parts[1].trim()}` : '';
+
+                card.innerHTML = `
+                    <div class="text-6xl mb-4 p-4 rounded-full bg-gray-900 border-4 border-dashed ${stockRingColor}">
+                        ${offer.icon}
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-bold mb-1 text-white">${valueText}</h2>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-teal-300 mb-4">${mainText}</p>
+                    
+                    <!-- DYNAMIC ELEMENT: STOCK STATUS (Never shows SOLD OUT) -->
+                    <div class="text-base font-semibold mb-6">
+                        Status: ${stockHtml}
+                    </div>
+
+                    <p class="text-gray-400 mb-8 flex-grow">
+                        Don't miss out! This reward requires completing a short action (e.g., survey or sign-up) and is available for a limited time.
+                    </p>
+
+                    <button ${isDisabled} onclick="${buttonOnClick}" class="cta-button w-full py-4 mt-auto rounded-xl font-extrabold text-lg text-white uppercase ${buttonClass} transition duration-150 ease-in-out">
+                        ${buttonText}
+                    </button>
+                `;
+                offersGrid.appendChild(card);
+            });
+        }
+        
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            renderOffers();
+            startCountdown();
+            
+            // Add event listener to the continue button
+            continueButton.addEventListener('click', function() {
+                redirectToOffer();
+            });
+        };
+
+    </script>
+</body>
+</html>
